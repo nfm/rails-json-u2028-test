@@ -1,0 +1,8 @@
+This page will cause a Javascript error (`SyntaxError: unterminated string literal`) in Rails 3.2.13.
+
+Changing the Gemfile to use rails@3-2-stable will fix it.
+
+<% @data = User.new(name: "Nicholas\u2028Firth-McCoy").to_json.html_safe %>
+<%= javascript_tag do %>
+  var users = <%= @data %>;
+<% end %>
